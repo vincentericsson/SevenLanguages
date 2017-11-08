@@ -2,26 +2,20 @@ module ActAsCsv
 	def self.included(base)
 		base.extend ClassMethods
 	end
-	
 	module ClassMethods
 		def acts_as_csv
 			include InstanceMethods
 		end
 	end
-	
 	module InstanceMethods
+		attr_accessor :headers, :csv_contents
 		def read
 			@csv_contents = []
 			filename = self.class.to_s.downcase + '.csv'
 			file = File.new(filename)
 			@headers = file.gets.chomp.split(', ')
-			
-			file.each do |row|
-				@csv_contents << row.chomp.split(', ')
-			end
+			file.each {|row| @csv_contents << row.chomp.split(', ')}
 		end
-		
-		attr_accessor :headers, :csv_contents
 		def initialize
 			read
 		end
@@ -29,7 +23,6 @@ module ActAsCsv
 			csv_contents.each {|x| yield CsvRow.new headers, x}
 		end
 	end
-	
 	class CsvRow
 		attr_accessor :headers, :data
 		def initialize headers, data

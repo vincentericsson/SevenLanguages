@@ -7,4 +7,5 @@ until guess == x do
 	puts 'too low' if guess < x
 	guess = gets.to_i
 end
+
 puts 'correct'
