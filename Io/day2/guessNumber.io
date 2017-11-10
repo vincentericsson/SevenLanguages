@@ -4,7 +4,8 @@ diff := nil
 
 in  := File standardInput
 out := File standardOutput
-5 repeat(
+
+10 repeat(
     "Guess the number:" println
 	out flush
 	guess := in readLine asNumber
