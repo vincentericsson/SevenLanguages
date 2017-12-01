@@ -14,4 +14,5 @@ Builder forward := method(
 Builder ul(
 	li("Io"),
 	li("Lua"),
-	li("Javascript"))
+	li("Javascript")
+)
